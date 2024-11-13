@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Artist Details</title>
+</head>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f3f4f8;
+  }
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* ensure the image is behind the text and other elements */
+  }
+  .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+  }
+  .card {
+    width: 80vw;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+    .card-top-bar {
+      background-color: rgba(175, 187, 214, 0.229);
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .card-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+    .card-details {
+      padding: 20px;
+    }
+    .card-details h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+.go-back-button {
+  width: 80vw;
+  max-width: 800px;
+  background-color: #2772c2ad;
+  color: #ffffff;
+  border: 1px solid #dddddd00;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+    .go-back-button:hover {
+      background-color: #105095;
+    }
+    .dates-locations {
+      margin-top: 18px;
+    }
+    .dates-locations h2 {
+      margin-bottom: 10px;
+    }
+    .location-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .location-list li {
+      margin-bottom: 10px;
+
+    }
+    .location-list p {
+     margin-left: 20px;
+    }
+    .location-list strong {
+      font-size: 19px;
+      font-weight: bold;
+    }
+    .card-details h1 {
+      font-size: 33px;
+    }
+</style>
+<body>
+  <img src="https://img.freepik.com/premium-photo/blue-pink-mesh-gradient-banner-background-wallpaper-website-template-landing-page-web-frame-text_685444-38.jpg?semt=ais_hybrid" class="background-image">
+  <div class="card-container">
+    <div class="go-back-button" onclick="window.history.back()">Artist List</div>
+    <div class="card">
+      <div class="card-top-bar">
+        <img class="card-image" src="{{ .Artist.Image }}" alt="{{ .Artist.Name }}">
+      </div>
+      <div class="card-details">
+        <h1>{{ .Artist.Name }}</h1>
+        <h2>Creation Date: {{ .Artist.CreationDate }}</h2>
+        <h2>First Album: {{ .Artist.FirstAlbum }}</h2>
+        <h2>Members: {{ .Artist.Members }}</h2>
+        <div class="dates-locations">
+          <h2>Dates and Locations:</h2>
+          {{ range .Relations }}
+          <ul class="location-list">
+            {{ range $key, $value := .DatesLocations }}
+            <li>
+              <strong>&bull; {{ $key }}</strong>
+              {{ range $value }}
+              <p>{{ . }}</p>
+              {{ end }}
+            </li>
+            {{ end }}
+          </ul>
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
