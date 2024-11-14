@@ -45,13 +45,3 @@ This project will help you learn about:
 
 ## Allowed Packages
 Only the standard Go packages are allowed.
-
-## Usage
-You can see an example of a RESTful API [here](https://en.wikipedia.org/wiki/Request%E2%80%93response).
-
-## Contributing
-If something is wrong or you have improvements to suggest, please submit an issue or propose a change!
-
----
-
-Hope this helps! Feel free to ask if you need any further assistance.
